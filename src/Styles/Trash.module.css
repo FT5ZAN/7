@@ -1,0 +1,83 @@
+.trash {
+  /* background-color: #092528; */
+  background: #0b1428;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 20, 40, 1) 20%,
+    rgba(12, 21, 41, 1) 50%,
+    rgba(5, 4, 4, 1) 100%
+  );
+  width: 100%;
+  height: 90%;
+  border-radius: 0px 0px 15px 0px;
+  /* border-right: 1px solid #16ff1ba3; */
+}
+.Tfit {
+  border-top: 1px solid #0371ea;
+  /* width: 100%; */
+  height: 88vh;
+  border-radius: 0px 0px 15px 0px;
+}
+.Tfit h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.tabContent {
+  padding: 1rem 0;
+}
+
+.tabContent h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.tabContent p {
+  color: #666;
+}
+.card {
+  border: 1px solid #1f2a55;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  background: #0b142d;
+}
+
+.header {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: white;
+}
+
+.body {
+  padding: 12px;
+  border-top: 1px solid #1f2a55;
+  color: #cbd5f5;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.recover {
+  background: #16a34a;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete {
+  background: #dc2626;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

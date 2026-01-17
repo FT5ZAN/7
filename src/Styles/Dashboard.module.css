@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+.Dashboard {
+  /* background-color: #092528; */
+  background: #0b1428;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 20, 40, 1) 20%,
+    rgba(12, 21, 41, 1) 50%,
+    rgba(5, 4, 4, 1) 100%
+  );
+  width: 100%;
+  /* height: auto; */
+  min-height: 90%;
+  /* min-height: 0;    */
+  border-radius: 0px 0px 15px 0px;
+  /* border-right: 1px solid #16ff1ba3; */
+  font-family: "Montserrat", sans-serif;
+}
+.Dfit {
+  border-top: 1px solid #0371ea;
+  /* width: 100%; */
+  /* height: auto; */
+  min-height: 87vh;
+  border-radius: 0px 0px 15px 0px;
+  padding: 5px;
+  /* background-color: aquamarine; */
+  min-height: 0;
+  overflow-y: auto;
+}
+.companyName {
+  color: white;
+  padding-left: 20px;
+  margin-top: 5px;
+  font-size: clamp(2rem, 2vw, 9rem);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.displayCrdsSection {
+  width: auto;
+  padding: 16px;
+  min-height: 20vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+
+  flex-wrap: wrap;
+  /* background-color: aquamarine; */
+}
+
+.StatusCards {
+  /* background-color: brown;  */
+    background: rgba(255, 255, 255, 0.03);
+    width: 100%;
+    max-width: 360px;
+    min-width: 280px;
+    min-height: 180px;
+    padding: 16px;
+    display: flex;
+    /* justify-content: center; */
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+    border-radius: 15px;
+    border: 1px solid #0371ea17;
+    transition: all 0.3s ease;
+}
+
+.employ{
+ width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 20px;
+    flex-direction: column;
+  p{
+   margin: 0px;
+      padding-left: 10px;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+  }
+  h1{
+     color: #0371EA;
+  }
+  h2{
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    text-align: left;
+        color: #0371EA;
+  }
+}
+.Icons{
+ width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    background: #ffffff0d;
+    border-radius: 15px;
+    font-size: 55px;
+    color: #0371EA;
+}
+.StatusCards:hover {
+            background: rgba(16, 78, 185, 0.08);
+            border-color: rgba(16, 50, 185, 0.2);
+        }
+.OverView{
+  background-color: #080808;
+    width: auto;
+    padding: 16px;
+    height: auto;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 20px; */
+    flex-direction: column;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    border: 1px solid white;
+    p{
+     margin: 0px;
+      padding-left: 10px;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+    }
+    h1{
+       color: #0371EA;
+    }
+    h2{
+      margin: 0px;
+      padding: 0px;
+      font-size: 20px;
+      text-align: left;
+          color: #0371EA;
+    }
+}
+@media (min-width: 768px) {
+  .StatusCards {
+    flex: 1 1 calc(50% - 16px);
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .StatusCards {
+    flex: 1 1 calc(33.333% - 16px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .StatusCards {
+    flex: 1 1 calc(25% - 16px);
+  }
+}

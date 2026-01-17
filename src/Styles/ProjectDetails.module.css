@@ -1,0 +1,85 @@
+.proDetails{
+ background: #0b1428;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 20, 40, 1) 20%,
+    rgba(12, 21, 41, 1) 50%,
+    rgba(5, 4, 4, 1) 100%
+  );
+  width: 100%;
+  height: 90%;
+  border-radius: 0px 0px 15px 0px;
+}
+.PDfit{
+ border-top: 1px solid #0371ea;
+  /* width: 100%; */
+  height: 88vh;
+  border-radius: 0px 0px 15px 0px;
+}
+
+.layout {
+  display: flex;
+  gap: 24px;
+}
+
+.left {
+  flex: 2;
+}
+
+.right {
+  padding: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  min-width: 280px;
+}
+
+.addMemberBtn {
+  margin: 10px 0 16px;
+  padding: 10px 14px;
+  background: #1d9bf0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.emptyText {
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+.memberCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #1d9bf0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.memberInfo p {
+  margin: 2px 0;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.removeBtn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: #ff4d4f;
+  font-size: 18px;
+  cursor: pointer;
+}

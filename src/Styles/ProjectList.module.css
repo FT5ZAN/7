@@ -1,0 +1,49 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: #0b142d;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #1e3a5f;
+}
+
+.name {
+  margin: 0;
+  color: #fff;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.planned { background: hsl(215, 25%, 27%); }
+.in-progress { background: #2563eb; }
+.completed { background: #16a34a; }
+.on-hold { background: #dc2626; }
+
+.progress {
+  margin: 10px 0;
+  background: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 6px;
+  background: #22c55e;
+}
+
+.viewBtn {
+  background: #0371ea;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
