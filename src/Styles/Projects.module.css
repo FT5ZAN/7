@@ -28,6 +28,7 @@
     padding: 5px;
     padding-right: 25px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .AddempBtn{
   background: rgba(255, 255, 255, 0.03);
@@ -39,4 +40,7 @@
     align-items: center;
     gap: 10px;
     font-size: 15px;
+}
+.Emplist {
+  background-color: #0b1428;
 }

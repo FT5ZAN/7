@@ -1,6 +1,12 @@
+
+
+
+// v2
+
 // import { useState, useEffect } from "react";
 // import { getCompanyById, updateCompanyById } from "../../Api/Api_Methods";
 // import styles from "../../Styles/AddProjectMembersModal.module.css";
+
 // function AddProjectMembersModal({ show, onClose, project, onMemberAdded }) {
 //   const [employees, setEmployees] = useState([]);
 //   const [filters, setFilters] = useState({
@@ -27,8 +33,6 @@
 //   const departments = [...new Set(employees.map((e) => e.department))];
 
 //   const filteredEmployees = employees.filter((emp) => {
-//     const alreadyAdded = project.teamMembers.some((m) => m.id === emp.id);
-
 //     return (
 //       emp.name.toLowerCase().includes(filters.search.toLowerCase()) &&
 //       (filters.role ? emp.role === filters.role : true) &&
@@ -37,11 +41,11 @@
 //   });
 
 //   const handleAddMember = async (employee) => {
-//     // avoid duplicate members
+//     // prevent duplicate add
 //     if (project.teamMembers.some((m) => m.id === employee.id)) return;
 
 //     const updatedMembers = [
-//       ...(project.teamMembers || []),
+//       ...project.teamMembers,
 //       {
 //         id: employee.id,
 //         name: employee.name,
@@ -54,7 +58,7 @@
 //     const res = await getCompanyById(companyId);
 
 //     const updatedProjects = res.data.projects.map((p) =>
-//       p.id === project.id ? { ...p, teamMembers: updatedMembers } : p,
+//       p.id === project.id ? { ...p, teamMembers: updatedMembers } : p
 //     );
 
 //     await updateCompanyById(companyId, {
@@ -69,22 +73,28 @@
 //   return (
 //     <div className={styles.modalBackdrop}>
 //       <div className={styles.modal}>
-//         <h3>Add embers</h3>
+//         <h3>Add Working Members</h3>
 
 //         {/* Filters */}
 //         <input
 //           placeholder="Search name"
 //           value={filters.search}
-//           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+//           onChange={(e) =>
+//             setFilters({ ...filters, search: e.target.value })
+//           }
 //         />
 
 //         <select
 //           value={filters.role}
-//           onChange={(e) => setFilters({ ...filters, role: e.target.value })}
+//           onChange={(e) =>
+//             setFilters({ ...filters, role: e.target.value })
+//           }
 //         >
 //           <option value="">All Roles</option>
 //           {roles.map((r) => (
-//             <option key={r}>{r}</option>
+//             <option key={r} value={r}>
+//               {r}
+//             </option>
 //           ))}
 //         </select>
 
@@ -96,30 +106,44 @@
 //         >
 //           <option value="">All Departments</option>
 //           {departments.map((d) => (
-//             <option key={d}>{d}</option>
+//             <option key={d} value={d}>
+//               {d}
+//             </option>
 //           ))}
 //         </select>
 
 //         {/* Employee List */}
-//         {filteredEmployees.map((emp) => (
-//           <div key={emp.id} className="emp-row">
-//             <strong>{emp.name}</strong>
-//             <span>{emp.role}</span>
-//             <span>{emp.department}</span>
-//             <button
-//               disabled={alreadyAdded}
-//               onClick={() => handleAddMember(emp)}
-//               style={{
-//                 opacity: alreadyAdded ? 0.5 : 1,
-//                 cursor: alreadyAdded ? "not-allowed" : "pointer",
-//               }}
-//             >
-//               {alreadyAdded ? "Added" : "Add"}
-//             </button>
-//           </div>
-//         ))}
+//         {filteredEmployees.map((emp) => {
+//           const alreadyAdded = project.teamMembers.some(
+//             (m) => m.id === emp.id
+//           );
 
-//         <button onClick={onClose}>Close</button>
+//           return (
+//             <div key={emp.id} className={styles.empRow}>
+//               <div>
+//                 <strong>{emp.name}</strong>
+//                 <p>{emp.role}</p>
+//                 <p>{emp.department}</p>
+//               </div>
+
+//               <button
+//                 disabled={alreadyAdded}
+//                 onClick={() => handleAddMember(emp)}
+//                 className={styles.addBtn}
+//                 style={{
+//                   opacity: alreadyAdded ? 0.5 : 1,
+//                   cursor: alreadyAdded ? "not-allowed" : "pointer",
+//                 }}
+//               >
+//                 {alreadyAdded ? "Added" : "Add"}
+//               </button>
+//             </div>
+//           );
+//         })}
+
+//         <button className={styles.closeBtn} onClick={onClose}>
+//           Close
+//         </button>
 //       </div>
 //     </div>
 //   );
@@ -128,7 +152,10 @@
 // export default AddProjectMembersModal;
 
 
-// v2
+// v3
+
+
+
 
 import { useState, useEffect } from "react";
 import { getCompanyById, updateCompanyById } from "../../Api/Api_Methods";
@@ -198,82 +225,86 @@ function AddProjectMembersModal({ show, onClose, project, onMemberAdded }) {
   };
 
   return (
-    <div className={styles.modalBackdrop}>
-      <div className={styles.modal}>
-        <h3>Add Working Members</h3>
+    <div className={styles.modalBackdrop} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <h3 className={styles.title}>Add Team Members</h3>
 
         {/* Filters */}
-        <input
-          placeholder="Search name"
-          value={filters.search}
-          onChange={(e) =>
-            setFilters({ ...filters, search: e.target.value })
-          }
-        />
+        <div className={styles.filters}>
+          <input
+            className={styles.input}
+            placeholder="... Search by name"
+            value={filters.search}
+            onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+          />
 
-        <select
-          value={filters.role}
-          onChange={(e) =>
-            setFilters({ ...filters, role: e.target.value })
-          }
-        >
-          <option value="">All Roles</option>
-          {roles.map((r) => (
-            <option key={r} value={r}>
-              {r}
-            </option>
-          ))}
-        </select>
+          <select
+            className={styles.select}
+            value={filters.role}
+            onChange={(e) => setFilters({ ...filters, role: e.target.value })}
+          >
+            <option value="">All Roles</option>
+            {roles.map((r) => (
+              <option key={r} value={r}>
+                {r}
+              </option>
+            ))}
+          </select>
 
-        <select
-          value={filters.department}
-          onChange={(e) =>
-            setFilters({ ...filters, department: e.target.value })
-          }
-        >
-          <option value="">All Departments</option>
-          {departments.map((d) => (
-            <option key={d} value={d}>
-              {d}
-            </option>
-          ))}
-        </select>
+          <select
+            className={styles.select}
+            value={filters.department}
+            onChange={(e) => setFilters({ ...filters, department: e.target.value })}
+          >
+            <option value="">All Departments</option>
+            {departments.map((d) => (
+              <option key={d} value={d}>
+                {d}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Employee List */}
-        {filteredEmployees.map((emp) => {
-          const alreadyAdded = project.teamMembers.some(
-            (m) => m.id === emp.id
-          );
+        <div className={styles.employeeList}>
+          {filteredEmployees.length === 0 ? (
+            <p className={styles.emptyText}>No employees found</p>
+          ) : (
+            filteredEmployees.map((emp) => {
+              const alreadyAdded = project.teamMembers.some((m) => m.id === emp.id);
+              const avatar = emp.name.charAt(0).toUpperCase();
 
-          return (
-            <div key={emp.id} className={styles.empRow}>
-              <div>
-                <strong>{emp.name}</strong>
-                <p>{emp.role}</p>
-                <p>{emp.department}</p>
-              </div>
+              return (
+                <div key={emp.id} className={styles.empRow}>
+                  <div className={styles.empAvatar}>{avatar}</div>
+                  <div className={styles.empInfo}>
+                    <strong className={styles.empName}>{emp.name}</strong>
+                    <span className={styles.coreting}><h5>Role :</h5>  <p className={styles.empRole}>{emp.role}</p> </span>
+                    <span  className={styles.coreting}>    <h5>Department :</h5> <p className={styles.empDept}>{emp.department}</p></span>
+                  </div>
 
-              <button
-                disabled={alreadyAdded}
-                onClick={() => handleAddMember(emp)}
-                className={styles.addBtn}
-                style={{
-                  opacity: alreadyAdded ? 0.5 : 1,
-                  cursor: alreadyAdded ? "not-allowed" : "pointer",
-                }}
-              >
-                {alreadyAdded ? "Added" : "Add"}
-              </button>
-            </div>
-          );
-        })}
+                  <button
+                    disabled={alreadyAdded}
+                    onClick={() => handleAddMember(emp)}
+                    className={`${styles.addBtn} ${alreadyAdded ? styles.disabled : ""}`}
+                  >
+                    <span>{alreadyAdded ? "Added" : "Add"}</span>
+                  </button>
+                </div>
+              );
+            })
+          )}
+        </div>
 
-        <button className={styles.closeBtn} onClick={onClose}>
-          Close
-        </button>
+        <div className={styles.footer}>
+          <button className={styles.closeBtn} onClick={onClose}>
+            <span>Close</span>
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
 export default AddProjectMembersModal;
+

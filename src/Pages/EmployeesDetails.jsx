@@ -1,3 +1,5 @@
+
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCompanyById } from "../Api/Api_Methods.jsx";
@@ -7,7 +9,7 @@ import Addmodal from "../Components/Employ.com/Addmodal.jsx";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addEmployeeToTrash } from "../Redux_Tool_Kit/trashSlice";
-
+import { FaArrowLeft } from "react-icons/fa6";
 function EmployeesDetails() {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
@@ -37,66 +39,135 @@ function EmployeesDetails() {
     fetchEmployee();
   }, [id]);
 
- 
   const handleDelete = async () => {
-  try {
-    const companyId = localStorage.getItem("userId");
+    try {
+      const companyId = localStorage.getItem("userId");
 
-    // 1️⃣ Add to trash (Redux)
-    dispatch(
-      addEmployeeToTrash({
-        ...employee,
-        deletedAt: Date.now(),
-      })
-    );
+      // 1️⃣ Add to trash (Redux)
+      dispatch(
+        addEmployeeToTrash({
+          ...employee,
+          deletedAt: Date.now(),
+        })
+      );
 
-    // 2️⃣ Remove from MockAPI
-    const res = await getCompanyById(companyId);
+      // 2️⃣ Remove from MockAPI
+      const res = await getCompanyById(companyId);
 
-    const updatedEmployees = res.data.employees.filter(
-      (emp) => emp.id !== employee.id
-    );
+      const updatedEmployees = res.data.employees.filter(
+        (emp) => emp.id !== employee.id
+      );
 
-    await updateCompanyById(companyId, {
-      ...res.data,
-      employees: updatedEmployees,
-    });
+      await updateCompanyById(companyId, {
+        ...res.data,
+        employees: updatedEmployees,
+      });
 
-    // 3️⃣ Redirect to Employees page
-    navigate("/Employees");
-  } catch (error) {
-    console.error("Delete failed", error);
-  }
-};
+      // 3️⃣ Redirect to Employees page
+      navigate("/Employees");
+    } catch (error) {
+      console.error("Delete failed", error);
+    }
+  };
 
+  if (loading) return <div className={styles.loading}>Loading...</div>;
+  if (!employee) return <div className={styles.notFound}>Employee not found</div>;
 
-  if (loading) return <p>Loading...</p>;
-  if (!employee) return <p>Employee not found</p>;
+  // Get first letter of name for avatar
+  const avatarLetter = employee.name?.charAt(0).toUpperCase() || "?";
 
   return (
     <>
+    
       <div className={styles.empDetails}>
-        <div className={styles.EDfit}>
-          <h2>{employee.name}</h2>
-          <button className={styles.editBtn} onClick={() => setShowModal(true)}>
-            Edit 
-          </button>
-          <button className={styles.deleteBtn} onClick={handleDelete}>
-  Delete
-</button>
+          <div className={styles.Addemp}>
+                    <button
+                      className={styles.AddempBtn}
+                      onClick={() => navigate("/Employees")}
+                    >
+                      {" "}
+                      <FaArrowLeft />
+                          Back
+                     {" "}
+                    </button>
+                  </div>
+        <div className={styles.detailsCard}>
+          {/* <div className={styles.Addemp}>
+                    <button
+                      className={styles.AddempBtn}
+                      onClick={() => navigate("/Employees")}
+                    >
+                      {" "}
+                      <FaArrowLeft />
+                          Back
+                     {" "}
+                    </button>
+                  </div> */}
+          {/* Header Section with Avatar */}
+          <div className={styles.header}>
+            <div className={styles.avatarSection}>
+              <div className={styles.avatar}>{avatarLetter}</div>
+              <div className={styles.nameSection}>
+                <h2 className={styles.name}>{employee.name}</h2>
+                <span className={`${styles.status} ${styles[employee.status]}`}>
+                  {employee.status}
+                </span>
+              </div>
+            </div>
 
-          <p>Email: {employee.email}</p>
-          <p>Role: {employee.role}</p>
-          <p>Department: {employee.department}</p>
-          <p>Status: {employee.status}</p>
-          <p>Salary: {employee.salary} LPA</p>
-          <p>Experience: {employee.experience}</p>
-          <p>Joining Date: {employee.joiningDate}</p>
+            <div className={styles.actions}>
+              <button 
+                className={styles.editBtn} 
+                onClick={() => setShowModal(true)}
+              >
+                <span>Edit</span>
+              </button>
+              <button 
+                className={styles.deleteBtn} 
+                onClick={handleDelete}
+              >
+                <span>Delete</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Details Grid */}
+          <div className={styles.detailsGrid}>
+            <div className={styles.detailItem}>
+              <span className={styles.label}>Email</span>
+              <span className={styles.value}>{employee.email}</span>
+            </div>
+
+            <div className={styles.detailItem}>
+              <span className={styles.label}>Role</span>
+              <span className={styles.value}>{employee.role}</span>
+            </div>
+
+            <div className={styles.detailItem}>
+              <span className={styles.label}>Department</span>
+              <span className={styles.value}>{employee.department}</span>
+            </div>
+
+            <div className={styles.detailItem}>
+              <span className={styles.label}>Salary</span>
+              <span className={styles.value}>{employee.salary} LPA</span>
+            </div>
+
+            <div className={styles.detailItem}>
+              <span className={styles.label}>Experience</span>
+              <span className={styles.value}>{employee.experience}</span>
+            </div>
+
+            <div className={styles.detailItem}>
+              <span className={styles.label}>Joining Date</span>
+              <span className={styles.value}>{employee.joiningDate}</span>
+            </div>
+          </div>
         </div>
       </div>
+   
       <Addmodal
         show={showModal}
-        // onClose={() => setShowModal(false)}
         onClose={() => {
           setShowModal(false);
           setLoading(true);
@@ -118,3 +189,7 @@ function EmployeesDetails() {
 }
 
 export default EmployeesDetails;
+
+
+
+

@@ -88,7 +88,9 @@ const filteredProjects = projects.filter((project) => {
             statuses={statuses}
           />
           {/* <ProjectList projects={projects} /> */}
+          <div className={styles.Emplist}>
           <ProjectList projects={filteredProjects} />
+          </div>
         </div>
       </div>
       <AddProjectModal show={showModal} onClose={() => setShowModal(false)} />

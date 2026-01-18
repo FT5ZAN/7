@@ -128,7 +128,7 @@ function Employees() {
               Add New Employee{" "}
             </button>
           </div>
-
+         <div className={styles.EmpF}>
           <EmployeeFilters
             filters={filters}
             onChange={handleFilterChange}
@@ -136,17 +136,19 @@ function Employees() {
             roles={roles}
             departments={departments}
           />
-
+         </div>
           {/* <EmployeeList
             employees={[...employees].reverse()}
             onEdit={handleEdit}
-          /> */}
+          /> */} 
+          <div className={styles.Emplist}>
+                 
           <EmployeeList
             employees={[...filteredEmployees].reverse()}
             onEdit={handleEdit}
             onDelete={handleDelete}
           />
-
+         </div>
           {/* {
             userData.map((item)=>(
               <div>
