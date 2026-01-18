@@ -5,7 +5,7 @@ import { UsernameContext } from "../../Context/UsernameContext.jsx"; // panding 
 import ConfirmAlert from "../Reuseable_Components/ConformAlert.jsx";
 function Navbar() {
   const [open, setOpen] = useState(false);
-
+   
   const handalonLogout = () => {
     console.log("logout");
     localStorage.clear("userId"); 
@@ -31,6 +31,11 @@ function Navbar() {
   };
   const Username = useContext(UsernameContext);
 
+
+const avatarLetter = Username
+  ? Username.charAt(0).toUpperCase()
+  : "?";
+
   return (
     <>
       <nav className={styles.nav}>
@@ -39,7 +44,7 @@ function Navbar() {
         </div>
         <div className={styles.nav2}>
           <div className={styles.usersection}>
-            <div className={styles.useravatar}>F</div>
+            <div className={styles.useravatar}>{avatarLetter}</div>
             <div className={styles.usernnfo}>
               <div className={styles.username}>{Username}</div>
 
