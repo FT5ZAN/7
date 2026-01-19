@@ -27,7 +27,7 @@ function OverView() {
     loadData();
   }, []);
 
-  /* 🔹 DEPARTMENT COUNT LOGIC */
+  
   const departmentMap = employees.reduce((acc, emp) => {
     acc[emp.department] = (acc[emp.department] || 0) + 1;
     return acc;
@@ -35,7 +35,7 @@ function OverView() {
 
   const departmentData = Object.entries(departmentMap);
 
-  // Calculate total employees
+  
   const totalEmployees = employees.length;
 
   if (loading) {
@@ -49,16 +49,14 @@ function OverView() {
 
   return (
     <div className={styles.container}>
-      {/* Page Header */}
+      
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>Overview</h1>
-        {/* <p className={styles.pageSubtitle}>
-          Quick insights into your organization
-        </p> */}
+       
       </div>
 
       <div className={styles.wrapper}>
-        {/* LEFT CARD - Department Distribution */}
+        
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <div>
@@ -99,7 +97,7 @@ function OverView() {
           <div className={styles.cardContent}>
             {departmentData.length === 0 ? (
               <div className={styles.emptyState}>
-                <p>No department data available</p>
+                <p>No DPT data available</p>
               </div>
             ) : (
               departmentData.map(([dept, count]) => {
@@ -129,7 +127,7 @@ function OverView() {
           </div>
         </div>
 
-        {/* RIGHT CARD - Project Status Overview */}
+        {/* RIGHT CArd  */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <div>

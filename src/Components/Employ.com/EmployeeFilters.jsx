@@ -1,107 +1,3 @@
-// import styled from "styled-components";
-
-// function EmployeeFilters({ filters, onChange, onClear, roles, departments }) {
-//   return (
-//     <Wrapper>
-//       <Input
-//         type="text"
-//         placeholder="Search by name"
-//         value={filters.search}
-//         onChange={(e) => onChange("search", e.target.value)}
-//       />
-
-//       <Select
-//         value={filters.role}
-//         onChange={(e) => onChange("role", e.target.value)}
-//       >
-//         <option value="">All Roles</option>
-//         {roles.map((role) => (
-//           <option key={role} value={role}>
-//             {role}
-//           </option>
-//         ))}
-//       </Select>
-
-//       <Select
-//         value={filters.department}
-//         onChange={(e) => onChange("department", e.target.value)}
-//       >
-//         <option value="">All Departments</option>
-//         {departments.map((dep) => (
-//           <option key={dep} value={dep}>
-//             {dep}
-//           </option>
-//         ))}
-//       </Select>
-
-//       <Select
-//         value={filters.status}
-//         onChange={(e) => onChange("status", e.target.value)}
-//       >
-//         <option value="">All Status</option>
-//         <option value="active">Active</option>
-//         <option value="inactive">Inactive</option>
-//       </Select>
-//       <ClearBtn onClick={onClear}>Clear Filters</ClearBtn>
-//     </Wrapper>
-//   );
-// }
-
-// export default EmployeeFilters;
-
-// const Wrapper = styled.div`
-//   display: grid;
-//   grid-template-columns: 2fr 1fr 1fr 1fr;
-//   gap: 12px;
-//  margin: 10px;
-//     padding: 5px;
-// `;
-
-// const Input = styled.input`
-//   padding: 10px 12px;
-//   border-radius: 8px;
-//   border: 1px solid #1f2a55;
-//   background: #0b142d;
-//   color: #fff;
-// `;
-
-// const Select = styled.select`
-//   padding: 10px 12px;
-//   border-radius: 8px;
-//   border: 1px solid #1f2a55;
-//   background: #0b142d;
-//   color: #fff;
-// `;
-
-// const ClearBtn = styled.button`
-//   background: transparent;
-//   border: 1px solid #dc2626;
-//   color: #dc2626;
-//   padding: 10px 12px;
-//   border-radius: 8px;
-//   cursor: pointer;
-
-//   &:hover {
-//     background: #dc2626;
-//     color: white;
-//   }
-// `;
-// const FilterContainer = styled.div`
-//   display: grid;
-//   grid-template-columns: 2fr 1fr 1fr 1fr auto;
-//   gap: 14px;
-//   padding: 10px;
-//   background: rgba(15, 23, 42, 0.4);
-//   backdrop-filter: blur(20px);
-//   -webkit-backdrop-filter: blur(20px);
-//   border-radius: 16px;
-//   border: 1px solid rgba(255, 255, 255, 0.08);
-//   box-shadow: 
-//     0 8px 32px rgba(0, 0, 0, 0.3),
-//     inset 0 1px 0 rgba(255, 255, 255, 0.05);
-//     align-items: center;
-// `;
-
 
 import styled from "styled-components";
 
@@ -177,7 +73,7 @@ const Wrapper = styled.div`
   margin: 10px;
   padding: 5px;
 
-  /* Mobile - reduce margins on small screens */
+  /* Mobile - reduce margins on satarts small screens */
   @media (max-width: 640px) {
     margin: 5px;
     padding: 2px;

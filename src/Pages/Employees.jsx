@@ -87,7 +87,7 @@ function Employees() {
   try {
     const companyId = localStorage.getItem("userId");
 
-    // 1️⃣ Add to trash (RTK)
+    
     dispatch(
       addEmployeeToTrash({
         ...employee,
@@ -95,7 +95,7 @@ function Employees() {
       })
     );
 
-    // 2️⃣ Remove from MockAPI
+   
     const res = await getCompanyById(companyId);
 
     const updatedEmployees = res.data.employees.filter(
@@ -107,7 +107,7 @@ function Employees() {
       employees: updatedEmployees,
     });
 
-    // 3️⃣ Update UI
+    
     setEmployees(updatedEmployees);
   } catch (error) {
     console.error("Delete failed", error);

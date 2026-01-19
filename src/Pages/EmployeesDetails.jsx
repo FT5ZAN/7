@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addEmployeeToTrash } from "../Redux_Tool_Kit/trashSlice";
 import { FaArrowLeft } from "react-icons/fa6";
+import ConfirmAlert from "../Components/Reuseable_Components/ConformAlert.jsx";
+
 function EmployeesDetails() {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
@@ -17,7 +19,7 @@ function EmployeesDetails() {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ const [open, setOpen] = useState(false);
   useEffect(() => {
     async function fetchEmployee() {
       try {
@@ -41,9 +43,10 @@ function EmployeesDetails() {
 
   const handleDelete = async () => {
     try {
+      //  setOpen(false);
       const companyId = localStorage.getItem("userId");
 
-      // 1️⃣ Add to trash (Redux)
+      
       dispatch(
         addEmployeeToTrash({
           ...employee,
@@ -51,7 +54,7 @@ function EmployeesDetails() {
         })
       );
 
-      // 2️⃣ Remove from MockAPI
+      
       const res = await getCompanyById(companyId);
 
       const updatedEmployees = res.data.employees.filter(
@@ -63,7 +66,7 @@ function EmployeesDetails() {
         employees: updatedEmployees,
       });
 
-      // 3️⃣ Redirect to Employees page
+      
       navigate("/Employees");
     } catch (error) {
       console.error("Delete failed", error);
@@ -73,7 +76,7 @@ function EmployeesDetails() {
   if (loading) return <div className={styles.loading}>Loading...</div>;
   if (!employee) return <div className={styles.notFound}>Employee not found</div>;
 
-  // Get first letter of name for avatar
+  
   const avatarLetter = employee.name?.charAt(0).toUpperCase() || "?";
 
   return (
@@ -92,18 +95,7 @@ function EmployeesDetails() {
                     </button>
                   </div>
         <div className={styles.detailsCard}>
-          {/* <div className={styles.Addemp}>
-                    <button
-                      className={styles.AddempBtn}
-                      onClick={() => navigate("/Employees")}
-                    >
-                      {" "}
-                      <FaArrowLeft />
-                          Back
-                     {" "}
-                    </button>
-                  </div> */}
-          {/* Header Section with Avatar */}
+         
           <div className={styles.header}>
             <div className={styles.avatarSection}>
               <div className={styles.avatar}>{avatarLetter}</div>
@@ -124,14 +116,15 @@ function EmployeesDetails() {
               </button>
               <button 
                 className={styles.deleteBtn} 
-                onClick={handleDelete}
+                // onClick={handleDelete}
+                onClick={() => setOpen(true)}
               >
                 <span>Delete</span>
               </button>
             </div>
           </div>
 
-          {/* Details Grid */}
+         
           <div className={styles.detailsGrid}>
             <div className={styles.detailItem}>
               <span className={styles.label}>Email</span>
@@ -184,6 +177,19 @@ function EmployeesDetails() {
         }}
         editData={employee}
       />
+     <ConfirmAlert
+  isOpen={open}
+  title="Are you sure?"
+  message="Do you want to delete this Profile?"
+  confirmText="Delete"
+  cancelText="Cancel"
+  onConfirm={() => {
+    handleDelete();
+    setOpen(false);
+  }}
+  onCancel={() => setOpen(false)}
+/>
+
     </>
   );
 }

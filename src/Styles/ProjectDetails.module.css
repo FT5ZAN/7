@@ -211,7 +211,7 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(3, 113, 234, 0.5);
   color: white;
-  box-shadow: 0 4px 12px rgba(3, 113, 234, 0.3);
+  /* box-shadow: 0 4px 12px rgba(3, 113, 234, 0.3); */
 }
 
 .editBtn::before {

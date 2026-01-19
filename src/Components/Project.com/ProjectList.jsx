@@ -1,4 +1,4 @@
-// ProjectList.jsx
+
 import { useNavigate } from "react-router-dom";
 import styles from "../../Styles/ProjectList.module.css";
 
@@ -13,7 +13,7 @@ function ProjectList({ projects }) {
     <div className={styles.list}>
       {projects.map((project) => (
         <div key={project.id} className={styles.card}>
-          {/* Left Section - Project Info */}
+          
           <div className={styles.projectInfo}>
             <div className={styles.nameSection}>
               <h3 className={styles.name}>{project.name}</h3>
@@ -22,7 +22,7 @@ function ProjectList({ projects }) {
               </span>
             </div>
 
-            {/* Progress Section */}
+            
             <div className={styles.progressSection}>
               <div className={styles.progressHeader}>
                 <span className={styles.progressLabel}>Progress</span>
@@ -37,7 +37,7 @@ function ProjectList({ projects }) {
             </div>
           </div>
 
-          {/* Right Section - Action Button */}
+         
           <div className={styles.actionSection}>
             <button
               className={styles.viewBtn}

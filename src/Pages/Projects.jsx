@@ -43,7 +43,7 @@ const filteredProjects = projects.filter((project) => {
 
   //  useEffect(() => {
   //   async function loadProjects() {
-  //     const companyId = localStorage.getItem("auth_userId");
+  //     const companyId = localStorage.getItem("userId");
   //     const res = await getCompanyById(companyId);
   //     setProjects(res.data.projects || []);
   //   }

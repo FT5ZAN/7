@@ -33,23 +33,7 @@ function Addmodal({ show, onClose, editData }) {
     severity: "success",
   });
 
-//   useEffect(() => {
-//     if (editData) {
-//       Object.keys(editData).forEach((key) => {
-//         if (key in emptyData) {
-//           dispatch({ type: key, val: editData[key] });
-//         }
-//       });
-//     }
-//   }, [editData]);
- 
-//   useEffect(() => {
-//   if (!show) {
-//     Object.keys(emptyData).forEach((key) => {
-//       dispatch({ type: key, val: "" });
-//     });
-//   }
-// }, [show]);
+
 
 
 useEffect(() => {
@@ -74,7 +58,7 @@ useEffect(() => {
   
 
   const handleSubmit = async () => {
-    // validation
+   
     if (
       !data.name ||
       !data.email ||
@@ -101,12 +85,12 @@ useEffect(() => {
       let updatedEmployees;
 
       if (editData) {
-        // 🟡 EDIT MODE
+        
         updatedEmployees = company.employees.map((emp) =>
           emp.id === editData.id ? { ...emp, ...data } : emp
         );
       } else {
-        // 🟢 ADD MODE
+        
         const newEmployee = {
           id: Date.now(),
           ...data,
@@ -249,14 +233,6 @@ useEffect(() => {
         </div>
 
         <div className={styles.footer}>
-          
-          {/* <button
-            type="button"
-            className={styles.primary}
-            onClick={handleAddEmployee}
-          >
-            Add Employee
-          </button> */}
           <button
             type="button"
             className={styles.primary}
